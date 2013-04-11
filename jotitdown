@@ -1,0 +1,14 @@
+#/bin/sh -i
+
+#add note entries to the file
+#$HOME/note-file
+
+file=$HOME/note-file
+echo -n "Enter Title: "
+date >> $file
+read title
+echo "$title" >> $file
+echo >> $file
+cat >> $file
+echo "----------------------------------" >> $file
+echo >> $file

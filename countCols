@@ -1,0 +1,6 @@
+#/bin/sh -i
+
+echo "No. of Columns in the first row: "
+awk '{print NF}' $1 | head -n 1
+echo "No. of Columns in the last row: "
+awk '{print NF}' $1 | tail -n 1

@@ -1,0 +1,36 @@
+#!/bin/sh                                                                        
+
+#for safety                                                                     
+trap 'echo Keyboard interruption... ; exit 1' SIGINT
+
+if [ $# -eq 0 ]; then
+  echo "Usage:countMaxMin.sh -i [input files]"
+  echo "e.g ./countMaxMin.sh -i 'test.txt'"
+exit 1
+fi
+
+while getopts ":i:" opt; do
+  case $opt in
+    i)
+      echo "-i your input files are: $OPTARG" >&2
+      input="$OPTARG"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+
+awk ' 
+function min(x) {i=max(x);for(val in x) {if(i>x[val]){i=x[val];}} return i; }
+function max(x) {i=0; for(val in x) {if (i<=x[val]) {i=x[val];}} return i; }
+{a[$1]=$1;next}
+END {maxi=max(a);mini=min(a); print "max: "maxi"\nmin: "mini}
+' $input
+

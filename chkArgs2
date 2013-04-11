@@ -1,0 +1,10 @@
+#/bin/sh -i
+
+if [ $# -eq 0 ]
+  then
+    #redirect the usage message from its std output to std error 
+    echo "Usage: chkargs argument ..." 1>&2 
+    exit 1 #indicating the error has occured
+fi
+echo "Program running"
+exit 0 #no error occurs

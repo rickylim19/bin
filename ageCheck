@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# util to compute your age, 
+# years before reaching 30, 
+# and days till your birthdate
+
+echo -n "Enter the birthdate (dd-mm-yyyy): "
+read bdate
+
+bdate=${bdate/*(0)/}
+bday=${bdate:0:2}
+bmonth=${bdate:3:2}
+byear=${bdate:6:4}
+
+#current date
+cdate=`date +%d-%m-%Y`
+cday=${cdate:0:2}
+cmonth=${cdate:3:2}
+cyear=${cdate:6:4}
+
+#remove all the leading zeros to prevent bash treat them as octals
+if [[ "${cmonth#0}" -lt "${bmonth#0}" ]] || [[ "${cmonth#0}" -eq "${bmonth#0}" && "${cday#0}" -lt "${bday#0}" ]]
+then
+    let age=$cyear-$byear-1                                        
+else
+    let age=$cyear-$byear
+fi
+
+echo "Your Age = "$age
+
+if [[ $age -lt 30 ]]
+then
+  echo "Wow, in $(( 30-$age )) years, you'll be 30!"
+elif [[ $age -eq 30 ]]
+then
+  echo "You're 30 now"
+else
+  echo "You're over 30" 
+fi
+
+#calculate days till your birthday
+cbdate=$bmonth$bday$cyear
+#days till your birthdate
+y=$(date -j $cbdate +%j)
+#days till now
+x=$(date +%j)
+
+if [[ $y -gt $x ]]
+then
+  ((z=${y} - ${x}))
+  echo "You have ${z} days until your birthday"
+else
+  echo "Your birthday this year has already passed" 
+fi

@@ -1,0 +1,13 @@
+#!/bin/bash
+# to group files with here document
+echo "# Usage: bundle [file1] [file2] > [file12]"
+echo "# To unbundle, bash this file"
+echo "# Usage: bash [file12]"
+
+for i
+do
+  echo "echo $i 1>&2"
+  echo "cat >$i <<'End of $i'"
+  cat $i
+  echo "End of $i"
+done

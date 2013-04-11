@@ -1,0 +1,27 @@
+#/bin/sh -i
+
+#script to check if all the files have equal lines
+
+#for safety
+trap 'echo Keyboard interruption... ; exit 1' SIGINT
+
+if [ $# -eq 0 ]; then
+  echo "Usage: is_AllFilesEqualLines files" 1>&2
+  echo "e.g: is_AllFilesEqualLines tmp/*"
+  echo "tmp/*: dir containing files to check"
+  exit 1
+fi
+
+if [ $# -gt 1 ]; then
+  lineNo=$(wc -l $@ | awk '{print $1}' | uniq)
+  lineLength=$(echo $lineNo | awk '{print NF}')
+  if [ $lineLength -eq 2 ]; then
+    #2 since 
+    # the 1st corresponds to the equal number of lines for each file
+    # the 2nd corresponds to the total number of lines from all files
+    echo "All the files have equal number of lines"
+    echo "Each file has $(echo $lineNo | awk '{print $1}') lines"
+  else
+    echo "Not all the files have equal number of lines"
+  fi
+fi

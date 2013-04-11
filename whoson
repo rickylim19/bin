@@ -1,0 +1,6 @@
+#/bin/sh 
+
+#check the current users
+date
+echo 'Nerds currently logged in'
+who

@@ -1,0 +1,15 @@
+#/bin/sh -i
+
+echo -n "word1: "
+read word1
+echo -n "word2: "
+read word2
+
+if test "$word1" = "$word2"
+  then
+    echo "Result:Match"
+  else
+    echo "Result: Different ..."
+fi
+
+echo "End of program"

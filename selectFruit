@@ -1,0 +1,16 @@
+#/bin/sh -i
+
+PS3="Choose your favorite fruit from these possibilities: "
+select FRUIT in apple banana blueberry kiwi orange watermelon STOP
+do
+  if [ "$FRUIT" == "" ]; then
+    echo -e "Invalid entry. \n"
+    continue
+  elif [ $FRUIT = STOP ]; then
+    echo "Thanks for playing!"
+    break
+  fi
+
+echo "You chose $FRUIT as your favorite. "
+echo -e "That is choice number $REPLY.\n"
+done

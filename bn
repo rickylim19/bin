@@ -1,0 +1,14 @@
+#/bin/sh 
+
+# get the basename of the path
+# e.g basename a/b/c/d
+# d
+
+if [ $# = 0 ]; then
+  exit 1
+elif [ "$1" = "/" ]
+then
+  echo /
+else
+  echo $1 | sed 's:.*/::'
+fi
