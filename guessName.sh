@@ -1,4 +1,4 @@
-#/bin/sh -i
+#/bin/sh 
 
 secretName=Ricky
 name=noname
