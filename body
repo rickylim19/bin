@@ -1,0 +1,10 @@
+#! /bin/bash
+
+# print the header (the first line of input)
+# and then run the specified command on the body (the rest of the input)
+# use it in a pipeline, e.g. 
+# sort the body but not the header
+# echo -e "header\n1\n5\n4\n7\n3" | body sort
+IFS= read -r header
+printf '%s\n' "$header"
+eval $@
